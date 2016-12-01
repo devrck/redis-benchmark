@@ -1,0 +1,23 @@
+{
+  "redis" : {
+    "client" : {
+      "[connection]" : {
+        "scheme" : "tcp",
+        "host" : "localhost",
+        "port" : 6379,
+        "database" : 3,
+        "alias" : "default",
+        "exceptions" : true
+      },
+      "[options]" : {
+        "profile" : "3.0",
+        "timeout" : 5,
+        "exceptions" : true,
+        "prefix" : "devck:"
+      }
+    }
+  },
+  "logger" : {
+    "name" : "devck"
+  }
+}
