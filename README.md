@@ -9,7 +9,7 @@ How to run it
 2. You first have to have the parameters installed and configured correct. 
     
     ```bash
-    $ cp app/config/config.json.dist app/config/config.json &amp; vi app/config/config.json
+    $ cp app/config/config.json.dist app/config/config.json && vi app/config/config.json
     ```
     
 3. Install the dependencies using composer
