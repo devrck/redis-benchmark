@@ -24,13 +24,14 @@ class RedisScanKeys extends AbstractRedisCommand
      */
     protected function doExecute(InputInterface $input, OutputInterface $output)
     {
+        $prefix = $this->getApplication()->getParameter('redis.client.[options]')['prefix'];
         $string = $input->getOption('key');
         $this->runCommand('benchmark:set:pipeline', ['--key' => $string,]);
 
         $nextCursor = 0;
         do {
             //@note: this is bullshit you have to know the prefix for use with MATCH!!!
-            list($nextCursor, $itemsKeys) = $this->client->scan($nextCursor, ['MATCH' => sprintf('devck:%s*', $string),]);
+            list($nextCursor, $itemsKeys) = $this->client->scan($nextCursor, ['MATCH' => sprintf('%s%s*', $prefix, $string),]);
             $this->progressBar->advance();
         } while ($nextCursor != 0);
     }
