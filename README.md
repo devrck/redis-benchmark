@@ -31,7 +31,7 @@ Benchmarks
 
 System information:
 
-    ```bash
+```bash
     $ lscpu
     Architecture:          x86_64
     CPU op-mode(s):        32-bit, 64-bit
@@ -56,7 +56,7 @@ System information:
     NUMA node0 CPU(s):     0-3
     $ cat /proc/meminfo | grep MemTotal
     MemTotal:        8056332 kB
-    ```
+```
 
 
 ###SETS
