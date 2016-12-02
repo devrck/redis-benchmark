@@ -98,6 +98,9 @@ class RedisBenchmark extends Application implements LoggerAwareInterface
 
             new RedisCmd\RedisSetAddPipelineKeys(),
             new RedisCmd\RedisSetAddKeys(),
+
+            new RedisCmd\RedisSetIsMember(),
+            new RedisCmd\RedisSetIsMemberPipeline(),
         ];
     }
 
