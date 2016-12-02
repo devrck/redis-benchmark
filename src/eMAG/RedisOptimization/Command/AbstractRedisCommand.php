@@ -88,6 +88,7 @@ abstract class AbstractRedisCommand extends Command
             $output->writeln(sprintf('<comment>Running auto-clean keys...</comment>'));
             $this->runCommand('clean', [
                 '--key' => $input->getOption('key'),
+                '--single-key' => !$this->isMultiKey(),
             ]);
         }
 
@@ -126,7 +127,6 @@ abstract class AbstractRedisCommand extends Command
             'command' => $name,
             '--iterations' => $this->totalItems,
             '--key' => $this->getOptionKeyName(),
-            '--single-key' => !$this->isMultiKey(),
         ], $parameters)), new NullOutput());
     }
 
