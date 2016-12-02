@@ -31,7 +31,7 @@ class RedisSetAddKeys extends AbstractRedisCommand
             $items[] = sprintf('%s%d', $string, $i);
             $this->progressBar->advance();
         }
-        $this->client->sadd('redis:sadd', $items);
+        $this->client->sadd($string, $items);
         $this->setFinishMessage(sprintf('<info>SADD with pipeline of <comment>%d</comment> keys took <comment>%fs</comment></info>', $this->totalItems, (microtime(true) - $start)));
         $items = null;
     }
@@ -41,7 +41,15 @@ class RedisSetAddKeys extends AbstractRedisCommand
      */
     protected function getOptionKeyName()
     {
-        return 'rsak';
+        return 'redis:sadd';
+    }
+
+    /**
+     * @return  bool
+     */
+    protected function isMultiKey()
+    {
+        return false;
     }
 
     /**

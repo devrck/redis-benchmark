@@ -28,7 +28,7 @@ class RedisSetAddPipelineKeys extends AbstractRedisCommand
         $start = microtime(true);
         $pipe = $this->client->pipeline();
         for ($i = 0; $i < $this->totalItems; $i++) {
-            $pipe->sadd('redis:sadd', sprintf('%s%d', $string, $i));
+            $pipe->sadd('redis:p:sadd', sprintf('%s%d', $string, $i));
             $this->progressBar->advance();
         }
         $pipe->execute();
@@ -41,7 +41,15 @@ class RedisSetAddPipelineKeys extends AbstractRedisCommand
      */
     protected function getOptionKeyName()
     {
-        return 'rsapk';
+        return 'redis:p:sadd';
+    }
+
+    /**
+     * @return  bool
+     */
+    protected function isMultiKey()
+    {
+        return false;
     }
 
     /**

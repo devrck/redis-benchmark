@@ -84,9 +84,9 @@ abstract class AbstractRedisCommand extends Command
 
         $output->writeln('');
         $output->writeln($this->finishMessage);
-        if ($input->getOption('auto-clean') && $this->getName() != 'redis:clean') {
+        if ($input->getOption('auto-clean') && $this->getName() != 'clean') {
             $output->writeln(sprintf('<comment>Running auto-clean keys...</comment>'));
-            $this->runCommand('redis:clean', [
+            $this->runCommand('clean', [
                 '--key' => $input->getOption('key'),
             ]);
         }
@@ -118,15 +118,24 @@ abstract class AbstractRedisCommand extends Command
      * @param   string  $name
      * @param   array   $parameters
      *
-     * @return  void
+     * @return  int
      */
     protected function runCommand ($name, array $parameters = [])
     {
-        $this->getApplication()->find($name)->run(new ArrayInput(array_merge([
+        return $this->getApplication()->find($name)->run(new ArrayInput(array_merge([
             'command' => $name,
             '--iterations' => $this->totalItems,
             '--key' => $this->getOptionKeyName(),
+            '--single-key' => !$this->isMultiKey(),
         ], $parameters)), new NullOutput());
+    }
+
+    /**
+     * @return  bool
+     */
+    protected function isMultiKey()
+    {
+        return true;
     }
 
     /**

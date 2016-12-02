@@ -17,6 +17,7 @@ class RedisCleanCommand extends AbstractRedisCommand
         $this
             ->setName('clean')
             ->addOption('batch-size', null, InputOption::VALUE_OPTIONAL, 'Batch size iterations to clear', 100000)
+            ->addOption('single-key', null, InputOption::VALUE_NONE, 'A flag to set if there is just a single key to clear a not a batch')
             ->setDescription('Will remove the keys from a redis server in batches')
         ;
     }
@@ -26,8 +27,13 @@ class RedisCleanCommand extends AbstractRedisCommand
      */
     protected function doExecute (InputInterface $input, OutputInterface $output)
     {
-        $batchSize = $input->getOption('batch-size');
         $string = $input->getOption('key');
+        if ($input->getOption('single-key')) {
+            $this->client->del($string);
+
+            return;
+        }
+        $batchSize = $input->getOption('batch-size');
         $batch = 0;
         $items = [];
         $start = microtime(true);
