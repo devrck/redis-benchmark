@@ -116,18 +116,19 @@ abstract class AbstractRedisCommand extends Command
     }
 
     /**
-     * @param   string  $name
-     * @param   array   $parameters
+     * @param   string          $name
+     * @param   array           $parameters
+     * @param   OutputInterface $output
      *
      * @return  int
      */
-    protected function runCommand ($name, array $parameters = [])
+    protected function runCommand ($name, array $parameters = [], OutputInterface $output = null)
     {
         return $this->getApplication()->find($name)->run(new ArrayInput(array_merge([
             'command' => $name,
             '--iterations' => $this->totalItems,
             '--key' => $this->getOptionKeyName(),
-        ], $parameters)), new NullOutput());
+        ], $parameters)), ($output)?: new NullOutput());
     }
 
     /**
