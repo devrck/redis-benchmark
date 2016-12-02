@@ -81,6 +81,7 @@ class RedisBenchmark extends Application implements LoggerAwareInterface
      */
     public function getRedisCommands()
     {
+        //@todo: use symfony Finder and create this dynamic
         return [
             new RedisCmd\RedisCleanCommand(),
 
