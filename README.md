@@ -29,6 +29,36 @@ Enjoy!
 Benchmarks
 ---
 
+System information:
+
+    ```bash
+    $ lscpu
+    Architecture:          x86_64
+    CPU op-mode(s):        32-bit, 64-bit
+    Byte Order:            Little Endian
+    CPU(s):                4
+    On-line CPU(s) list:   0-3
+    Thread(s) per core:    1
+    Core(s) per socket:    4
+    Socket(s):             1
+    NUMA node(s):          1
+    Vendor ID:             GenuineIntel
+    CPU family:            6
+    Model:                 94
+    Stepping:              3
+    CPU MHz:               2587.609
+    BogoMIPS:              5181.70
+    Virtualization:        VT-x
+    L1d cache:             32K
+    L1i cache:             32K
+    L2 cache:              256K
+    L3 cache:              6144K
+    NUMA node0 CPU(s):     0-3
+    $ cat /proc/meminfo | grep MemTotal
+    MemTotal:        8056332 kB
+    ```
+
+
 ###SETS
 
 Adding to a SET benchmark test:
