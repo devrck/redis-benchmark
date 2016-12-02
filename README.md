@@ -25,3 +25,17 @@ How to run it
     ```
     
 Enjoy!
+
+Benchmarks
+---
+
+###SETS
+
+Adding to a SET benchmark test:
+
+| Iterations 	| SADD (multi add array members) 	| SADD (using pipelines)  	|
+|------------	|:------------------------------:	|-------------------------	|
+| 1000       	|       0.048632s / 4.0 MiB      	|   0.101955s / 4.0 MiB   	|
+| 10000      	|       0.114784s / 6.0 MiB      	|   0.622767s / 12.0 MiB  	|
+| 100000     	|      0.902093s / 34.0 MiB      	|   5.926091s / 88.0 MiB  	|
+| 1000000    	|      9.809987s / 310.0 MiB     	|  73.809517s / 853.2 MiB 	|
